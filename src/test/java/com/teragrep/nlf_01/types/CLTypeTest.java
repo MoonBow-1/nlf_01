@@ -299,5 +299,11 @@ public final class CLTypeTest {
         Assertions.assertEquals("timeEnqueued", sdElementMap.get("aer_02@48577").get("timestamp_source"));
 
         Assertions.assertEquals(CLType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
+
+        Assertions
+                .assertEquals(
+                        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}",
+                        sdElementMap.get("origin@48577").get("_ResourceId")
+                );
     }
 }

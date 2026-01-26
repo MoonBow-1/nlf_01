@@ -315,5 +315,11 @@ public final class ContainerTypeTest {
         Assertions.assertEquals("timeEnqueued", sdElementMap.get("aer_02@48577").get("timestamp_source"));
 
         Assertions.assertEquals(ContainerType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
+
+        Assertions.assertEquals("{subscriptionId}", sdElementMap.get("origin@48577").get("subscription"));
+        Assertions.assertEquals("{resourceName}", sdElementMap.get("origin@48577").get("clusterName"));
+        Assertions.assertEquals("pod-namespace", sdElementMap.get("origin@48577").get("namespace"));
+        Assertions.assertEquals("pod-name", sdElementMap.get("origin@48577").get("pod"));
+        Assertions.assertEquals("container-id", sdElementMap.get("origin@48577").get("containerId"));
     }
 }
