@@ -65,11 +65,20 @@ import java.util.UUID;
 
 public final class IstioIngressContainerType implements EventType {
 
-    private final static String STATIC_APPNAME = "istio-ingress";
+    private final String staticAppname;
     private final ParsedEvent parsedEvent;
     private final String realHostname;
 
     public IstioIngressContainerType(final ParsedEvent parsedEvent, final String realHostname) {
+        this("istio-ingress", parsedEvent, realHostname);
+    }
+
+    private IstioIngressContainerType(
+            final String staticAppname,
+            final ParsedEvent parsedEvent,
+            final String realHostname
+    ) {
+        this.staticAppname = staticAppname;
         this.parsedEvent = parsedEvent;
         this.realHostname = realHostname;
     }
@@ -95,7 +104,7 @@ public final class IstioIngressContainerType implements EventType {
 
     @Override
     public String appName() throws PluginException {
-        return new ValidRFC5424AppName(STATIC_APPNAME).appName();
+        return new ValidRFC5424AppName(staticAppname).appName();
     }
 
     @Override
