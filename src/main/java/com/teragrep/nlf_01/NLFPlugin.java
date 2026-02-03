@@ -139,7 +139,7 @@ public final class NLFPlugin implements Plugin {
             else if (jsonObject.getString("Type").equals("ContainerLogV2")) {
                 if (
                     jsonObject.containsKey("PodNamespace")
-                            && jsonObject.getString("PodNamespace").contains("aks-istio-ingress")
+                            && jsonObject.getString("PodNamespace").equals("aks-istio-ingress")
                 ) {
                     eventTypes.add(new IstioIngressContainerType(parsedEvent, realHostname));
                 }

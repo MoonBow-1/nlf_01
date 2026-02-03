@@ -123,10 +123,10 @@ class IstioIngressContainerTypeTest {
 
         Assertions.assertEquals("istio-ingress", actualAppName);
         Assertions.assertEquals(Facility.AUDIT, actualFacility);
-        Assertions.assertEquals("aks-istio-ingress-pod-namespace", actualHostname);
+        Assertions.assertEquals("aks-istio-ingress", actualHostname);
         Assertions
                 .assertEquals(
-                        "{\"TimeGenerated\":\"2020-01-01T01:23:34.5678999Z\",\"Computer\":\"computer\",\"ContainerId\":\"container-id\",\"ContainerName\":\"container-name\",\"PodName\":\"pod-name\",\"PodNamespace\":\"aks-istio-ingress-pod-namespace\",\"LogMessage\":{\"level\":\"info\",\"ts\":\"2020-01-01T01:23:45.678Z\",\"logger\":\"logger\",\"msg\":\"message\",\"namespace\":\"namespace\"},\"LogSource\":\"stdout\",\"KubernetesMetadata\":{\"image\":\"image\",\"imageID\":\"123-456-789\",\"imageRepo\":\"imagerepo\",\"imageTag\":\"imagetag\",\"podAnnotations\":{\"appname-annotation\":\"APP-NAME\",\"hostname-annotation\":\"HOST-NAME\"},\"podLabels\":{\"x\":\"y\"},\"podUid\":\"123\"},\"LogLevel\":\"info\",\"_ItemId\":\"123\",\"_Internal_WorkspaceResourceId\":\"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\",\"Type\":\"ContainerLogV2\",\"TenantId\":\"456\",\"_ResourceId\":\"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\"}",
+                        "{\"TimeGenerated\":\"2020-01-01T01:23:34.5678999Z\",\"Computer\":\"computer\",\"ContainerId\":\"container-id\",\"ContainerName\":\"container-name\",\"PodName\":\"pod-name\",\"PodNamespace\":\"aks-istio-ingress\",\"LogMessage\":{\"level\":\"info\",\"ts\":\"2020-01-01T01:23:45.678Z\",\"logger\":\"logger\",\"msg\":\"message\",\"namespace\":\"namespace\"},\"LogSource\":\"stdout\",\"KubernetesMetadata\":{\"image\":\"image\",\"imageID\":\"123-456-789\",\"imageRepo\":\"imagerepo\",\"imageTag\":\"imagetag\",\"podAnnotations\":{\"appname-annotation\":\"APP-NAME\",\"hostname-annotation\":\"HOST-NAME\"},\"podLabels\":{\"x\":\"y\"},\"podUid\":\"123\"},\"LogLevel\":\"info\",\"_ItemId\":\"123\",\"_Internal_WorkspaceResourceId\":\"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\",\"Type\":\"ContainerLogV2\",\"TenantId\":\"456\",\"_ResourceId\":\"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\"}",
                         actualMsg
                 );
         Assertions.assertEquals("12345678900", actualMsgId);
@@ -156,7 +156,7 @@ class IstioIngressContainerTypeTest {
 
         Assertions.assertEquals("{subscriptionId}", sdElementMap.get("origin@48577").get("subscription"));
         Assertions.assertEquals("{resourceName}", sdElementMap.get("origin@48577").get("clusterName"));
-        Assertions.assertEquals("aks-istio-ingress-pod-namespace", sdElementMap.get("origin@48577").get("namespace"));
+        Assertions.assertEquals("aks-istio-ingress", sdElementMap.get("origin@48577").get("namespace"));
         Assertions.assertEquals("pod-name", sdElementMap.get("origin@48577").get("pod"));
         Assertions.assertEquals("container-id", sdElementMap.get("origin@48577").get("containerId"));
 
@@ -184,10 +184,10 @@ class IstioIngressContainerTypeTest {
 
         Assertions.assertEquals("istio-ingress", actualAppName);
         Assertions.assertEquals(Facility.AUDIT, actualFacility);
-        Assertions.assertEquals("aks-istio-ingress-pod-namespace", actualHostname);
+        Assertions.assertEquals("aks-istio-ingress", actualHostname);
         Assertions
                 .assertEquals(
-                        "{\"TimeGenerated\":\"2020-01-01T01:23:34.5678999Z\",\"Computer\":\"computer\",\"ContainerId\":\"container-id\",\"ContainerName\":\"container-name\",\"PodName\":\"pod-name\",\"PodNamespace\":\"aks-istio-ingress-pod-namespace\",\"LogMessage\":{\"level\":\"info\",\"ts\":\"2020-01-01T01:23:45.678Z\",\"logger\":\"logger\",\"msg\":\"message\",\"namespace\":\"namespace\"},\"LogSource\":\"stdout\",\"KubernetesMetadata\":{\"image\":\"image\",\"imageID\":\"123-456-789\",\"imageRepo\":\"imagerepo\",\"imageTag\":\"imagetag\",\"podAnnotations\":{\"appname-annotation\":\"APP-NAME\",\"hostname-annotation\":\"HOST-NAME\"},\"podLabels\":{\"x\":\"y\"},\"podUid\":\"123\"},\"LogLevel\":\"info\",\"_ItemId\":\"123\",\"_Internal_WorkspaceResourceId\":\"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\",\"Type\":\"ContainerLogV2\",\"TenantId\":\"456\",\"_ResourceId\":\"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\"}",
+                        "{\"TimeGenerated\":\"2020-01-01T01:23:34.5678999Z\",\"Computer\":\"computer\",\"ContainerId\":\"container-id\",\"ContainerName\":\"container-name\",\"PodName\":\"pod-name\",\"PodNamespace\":\"aks-istio-ingress\",\"LogMessage\":{\"level\":\"info\",\"ts\":\"2020-01-01T01:23:45.678Z\",\"logger\":\"logger\",\"msg\":\"message\",\"namespace\":\"namespace\"},\"LogSource\":\"stdout\",\"KubernetesMetadata\":{\"image\":\"image\",\"imageID\":\"123-456-789\",\"imageRepo\":\"imagerepo\",\"imageTag\":\"imagetag\",\"podAnnotations\":{\"appname-annotation\":\"APP-NAME\",\"hostname-annotation\":\"HOST-NAME\"},\"podLabels\":{\"x\":\"y\"},\"podUid\":\"123\"},\"LogLevel\":\"info\",\"_ItemId\":\"123\",\"_Internal_WorkspaceResourceId\":\"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\",\"Type\":\"ContainerLogV2\",\"TenantId\":\"456\",\"_ResourceId\":\"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\"}",
                         actualMsg
                 );
         Assertions.assertEquals("", actualMsgId);
@@ -212,7 +212,7 @@ class IstioIngressContainerTypeTest {
 
         Assertions.assertEquals("{subscriptionId}", sdElementMap.get("origin@48577").get("subscription"));
         Assertions.assertEquals("{resourceName}", sdElementMap.get("origin@48577").get("clusterName"));
-        Assertions.assertEquals("aks-istio-ingress-pod-namespace", sdElementMap.get("origin@48577").get("namespace"));
+        Assertions.assertEquals("aks-istio-ingress", sdElementMap.get("origin@48577").get("namespace"));
         Assertions.assertEquals("pod-name", sdElementMap.get("origin@48577").get("pod"));
         Assertions.assertEquals("container-id", sdElementMap.get("origin@48577").get("containerId"));
 

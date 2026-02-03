@@ -4,7 +4,7 @@
   "ContainerId": "container-id",
   "ContainerName": "container-name",
   "PodName": "pod-name",
-  "PodNamespace": "aks-istio-ingress-pod-namespace",
+  "PodNamespace": "aks-istio-ingress",
   "LogMessage": {
     "level": "info",
     "ts": "2020-01-01T01:23:45.678Z",

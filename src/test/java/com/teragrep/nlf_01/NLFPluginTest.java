@@ -130,7 +130,7 @@ public class NLFPluginTest {
 
         final SyslogMessage syslogMessage = syslogMessages.get(0);
         Assertions.assertEquals(json, syslogMessage.getMsg());
-        Assertions.assertEquals("aks-istio-ingress-pod-namespace", syslogMessage.getHostname());
+        Assertions.assertEquals("aks-istio-ingress", syslogMessage.getHostname());
         Assertions.assertEquals("istio-ingress", syslogMessage.getAppName());
         Assertions.assertEquals("2020-01-01T01:23:34.567Z", syslogMessage.getTimestamp());
 
@@ -142,7 +142,7 @@ public class NLFPluginTest {
         Assertions.assertEquals(5, sdElementMap.get("origin@48577").size());
         Assertions.assertEquals("{subscriptionId}", sdElementMap.get("origin@48577").get("subscription"));
         Assertions.assertEquals("{resourceName}", sdElementMap.get("origin@48577").get("clusterName"));
-        Assertions.assertEquals("aks-istio-ingress-pod-namespace", sdElementMap.get("origin@48577").get("namespace"));
+        Assertions.assertEquals("aks-istio-ingress", sdElementMap.get("origin@48577").get("namespace"));
         Assertions.assertEquals("pod-name", sdElementMap.get("origin@48577").get("pod"));
         Assertions.assertEquals("container-id", sdElementMap.get("origin@48577").get("containerId"));
 
