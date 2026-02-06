@@ -50,6 +50,7 @@ import com.teragrep.nlf_01.PropertiesJson;
 import com.teragrep.rlo_14.SDElement;
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -128,5 +129,21 @@ public final class DefaultSDElements {
         elems.add(new SDElement("nlf_01@48577").addSDParam("eventType", className));
 
         return elems;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        final DefaultSDElements that = (DefaultSDElements) o;
+        return Objects.equals(parsedEvent, that.parsedEvent) && Objects.equals(realHostname, that.realHostname)
+                && Objects.equals(className, that.className);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(parsedEvent, realHostname, className);
     }
 }
