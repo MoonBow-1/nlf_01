@@ -74,6 +74,11 @@ import com.teragrep.rlo_14.Severity;
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -81,11 +86,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
-class AppServiceConsoleLogsTypeTest {
+final class DefaultEventTypeTest {
+
+    @Test
+    @DisplayName("Test the equals contract")
+    void testTheEqualsContract() {
+        EqualsVerifier.forClass(DefaultEventType.class).verify();
+    }
 
     private ParsedEvent testEvent(
             final String path,
@@ -115,7 +123,7 @@ class AppServiceConsoleLogsTypeTest {
                 new EventPropertiesFake(), new EventSystemPropertiesFake(), new EnqueuedTimeImpl("2010-01-01T00:00:00"), new EventOffsetImpl("0")
         );
 
-        final AppServiceConsoleLogsType type = new AppServiceConsoleLogsType(parsedEvent, "localhost", "aer");
+        final DefaultEventType type = new DefaultEventType(parsedEvent, "localhost", "aer");
 
         final String actualAppName = Assertions.assertDoesNotThrow(type::appName);
         final Facility actualFacility = Assertions.assertDoesNotThrow(type::facility);
@@ -160,7 +168,7 @@ class AppServiceConsoleLogsTypeTest {
         Assertions.assertEquals("timeEnqueued", sdElementMap.get("aer@48577").get("timestamp_source"));
 
         Assertions
-                .assertEquals(AppServiceConsoleLogsType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
+                .assertEquals(DefaultEventType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
     }
 
     @Test
@@ -171,7 +179,7 @@ class AppServiceConsoleLogsTypeTest {
                 new EventOffsetStub()
         );
 
-        final AppServiceConsoleLogsType type = new AppServiceConsoleLogsType(parsedEvent, "localhost", "aer");
+        final DefaultEventType type = new DefaultEventType(parsedEvent, "localhost", "aer");
 
         final String actualAppName = Assertions.assertDoesNotThrow(type::appName);
         final Facility actualFacility = Assertions.assertDoesNotThrow(type::facility);
@@ -211,7 +219,7 @@ class AppServiceConsoleLogsTypeTest {
         Assertions.assertEquals("generated", sdElementMap.get("aer@48577").get("timestamp_source"));
 
         Assertions
-                .assertEquals(AppServiceConsoleLogsType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
+                .assertEquals(DefaultEventType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
     }
 
     @Test
@@ -222,7 +230,7 @@ class AppServiceConsoleLogsTypeTest {
                 new EventOffsetStub()
         );
 
-        final AppServiceConsoleLogsType type = new AppServiceConsoleLogsType(parsedEvent, "localhost", "aer");
+        final DefaultEventType type = new DefaultEventType(parsedEvent, "localhost", "aer");
 
         // Should throw an Exception since the Type field is missing, but this would probably hinder the actual logic of using this class in a real scenario
         Assertions.assertThrows(PluginException.class, type::appName);
@@ -260,7 +268,7 @@ class AppServiceConsoleLogsTypeTest {
         Assertions.assertEquals("generated", sdElementMap.get("aer@48577").get("timestamp_source"));
 
         Assertions
-                .assertEquals(AppServiceConsoleLogsType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
+                .assertEquals(DefaultEventType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
     }
 
     @Test
@@ -285,7 +293,7 @@ class AppServiceConsoleLogsTypeTest {
                 "src/test/resources/appserviceconsolelogs.json", new EventPartitionContextImpl(partitionContextMap), new EventPropertiesImpl(propertiesMap), new EventSystemPropertiesImpl(systemPropertiesMap), new EnqueuedTimeImpl("2010-01-01T00:00:00"), new EventOffsetImpl("0")
         );
 
-        final AppServiceConsoleLogsType type = new AppServiceConsoleLogsType(parsedEvent, "localhost", "aer");
+        final DefaultEventType type = new DefaultEventType(parsedEvent, "localhost", "aer");
 
         final Set<SDElement> actualSDElements = Assertions.assertDoesNotThrow(type::sdElements);
 
@@ -311,6 +319,6 @@ class AppServiceConsoleLogsTypeTest {
         Assertions.assertEquals("timeEnqueued", sdElementMap.get("aer@48577").get("timestamp_source"));
 
         Assertions
-                .assertEquals(AppServiceConsoleLogsType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
+                .assertEquals(DefaultEventType.class.getSimpleName(), sdElementMap.get("nlf_01@48577").get("eventType"));
     }
 }

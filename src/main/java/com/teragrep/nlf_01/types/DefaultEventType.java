@@ -47,29 +47,35 @@ package com.teragrep.nlf_01.types;
 
 import com.teragrep.akv_01.event.ParsedEvent;
 import com.teragrep.akv_01.plugin.PluginException;
-import com.teragrep.nlf_01.util.ASCIIString;
-import com.teragrep.nlf_01.util.DefaultSDElements;
-import com.teragrep.nlf_01.util.MD5Hash;
-import com.teragrep.nlf_01.util.ResourceId;
-import com.teragrep.nlf_01.util.SDElements;
-import com.teragrep.nlf_01.util.ValidKey;
-import com.teragrep.nlf_01.util.ValidStringKey;
-import com.teragrep.nlf_01.util.ValidRFC5424AppName;
-import com.teragrep.nlf_01.util.ValidRFC5424Hostname;
-import com.teragrep.nlf_01.util.ValidRFC5424Timestamp;
+import com.teragrep.nlf_01.util.*;
 import com.teragrep.rlo_14.Facility;
 import com.teragrep.rlo_14.SDElement;
 import com.teragrep.rlo_14.Severity;
 import jakarta.json.JsonObject;
+
+import java.util.Objects;
 import java.util.Set;
 
-public final class AppServiceConsoleLogsType implements EventType {
+/**
+ * A class for EventTypes which use:
+ * <ol>
+ * <li>{@link Severity#NOTICE} for its severity</li>
+ * <li>{@link Facility#AUDIT} for its facility</li>
+ * <li>Value from the <code>_ResourceId</code> field for its hostName</li>
+ * <li>Value from the <code>Type</code> field for its appName</li>
+ * <li>Value from the <code>TimeGenerated</code> field for its timestamp</li>
+ * <li>{@link DefaultSDElements} for its SDElements</li>
+ * <li><code>SequenceNumber</code> from the <code>parsedEvent.systemProperties</code> for its msgId</li>
+ * </ol>
+ * Should <b>NOT</b> be used as a fallback
+ */
+public final class DefaultEventType implements EventType {
 
     private final ParsedEvent parsedEvent;
     private final String realHostname;
     private final String componentNameForPartitions;
 
-    public AppServiceConsoleLogsType(
+    public DefaultEventType(
             final ParsedEvent parsedEvent,
             final String realHostname,
             final String componentNameForPartitions
@@ -95,9 +101,12 @@ public final class AppServiceConsoleLogsType implements EventType {
 
         final ValidKey<String> validKey = new ValidStringKey(record, "_ResourceId");
 
+        final String resourceId = validKey.value();
+
         return new ValidRFC5424Hostname(
-                "md5-".concat(new MD5Hash(validKey.value()).md5().concat("-").concat(new ASCIIString(new ResourceId(validKey.value()).resourceName()).withNonAsciiCharsRemoved()))
+                "md5-".concat(new MD5Hash(resourceId).md5().concat("-").concat(new ASCIIString(new ResourceId(resourceId).resourceName()).withNonAsciiCharsRemoved()))
         ).hostnameWithInvalidCharsRemoved();
+
     }
 
     @Override
@@ -111,7 +120,9 @@ public final class AppServiceConsoleLogsType implements EventType {
     public long timestamp() throws PluginException {
         final JsonObject record = parsedEvent.asJsonStructure().asJsonObject();
 
-        return new ValidRFC5424Timestamp(new ValidStringKey(record, "TimeGenerated").value()).validTimestamp();
+        final ValidKey<String> validKey = new ValidStringKey(record, "TimeGenerated");
+
+        return new ValidRFC5424Timestamp(validKey.value()).validTimestamp();
     }
 
     @Override
@@ -141,5 +152,20 @@ public final class AppServiceConsoleLogsType implements EventType {
     @Override
     public String msg() throws PluginException {
         return parsedEvent.asString();
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final DefaultEventType that = (DefaultEventType) o;
+        return Objects.equals(parsedEvent, that.parsedEvent) && Objects.equals(realHostname, that.realHostname)
+                && Objects.equals(componentNameForPartitions, that.componentNameForPartitions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(parsedEvent, realHostname, componentNameForPartitions);
     }
 }
