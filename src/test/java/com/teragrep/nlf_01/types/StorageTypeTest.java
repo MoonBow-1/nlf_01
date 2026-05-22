@@ -49,7 +49,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class StorageTypeTest {
+final class StorageTypeTest {
 
     @Test
     @DisplayName("Test the equals contract")
