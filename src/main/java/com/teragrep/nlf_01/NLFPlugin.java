@@ -152,6 +152,11 @@ public final class NLFPlugin implements Plugin {
                 eventTypes
                         .add(new PowerPlatformAdminActivityType(parsedEvent, realHostname, componentNameForPartitions));
             }
+            else if (
+                Set.of("StorageBlobLogs", "StorageFileLogs", "StorageQueueLogs", "StorageTableLogs").contains(type)
+            ) {
+                eventTypes.add(new StorageType(parsedEvent, realHostname, componentNameForPartitions));
+            }
             else if (type.endsWith("fluent_audit_log_events_CL")) {
                 eventTypes.add(new CCType(parsedEvent, realHostname, componentNameForPartitions));
             }
