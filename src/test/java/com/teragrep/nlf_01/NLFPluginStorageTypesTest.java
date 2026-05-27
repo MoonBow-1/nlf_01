@@ -122,7 +122,7 @@ final class NLFPluginStorageTypesTest {
                                 + "}",
                         syslogMessage.getMsg()
                 );
-        Assertions.assertEquals("storageaccount2", syslogMessage.getHostname());
+        Assertions.assertEquals("md5-ebf717aa119f6e89e96bd95779913f6c-storageaccount2", syslogMessage.getHostname());
         Assertions.assertEquals("StorageBlobLogs", syslogMessage.getAppName());
         Assertions.assertEquals("2020-10-01T11:59:26.256Z", syslogMessage.getTimestamp());
 
@@ -197,7 +197,7 @@ final class NLFPluginStorageTypesTest {
                                 + "}",
                         syslogMessage.getMsg()
                 );
-        Assertions.assertEquals("storageaccount1", syslogMessage.getHostname());
+        Assertions.assertEquals("md5-af709d6b4e17c20d133f45a56a04592d-storageaccount1", syslogMessage.getHostname());
         Assertions.assertEquals("StorageFileLogs", syslogMessage.getAppName());
         Assertions.assertEquals("2020-10-01T11:59:26.256Z", syslogMessage.getTimestamp());
 
@@ -263,7 +263,7 @@ final class NLFPluginStorageTypesTest {
                                 + "}",
                         syslogMessage.getMsg()
                 );
-        Assertions.assertEquals("storageaccount3", syslogMessage.getHostname());
+        Assertions.assertEquals("md5-5e6b8ffbd447bf8384281902a65b1211-storageaccount3", syslogMessage.getHostname());
         Assertions.assertEquals("StorageQueueLogs", syslogMessage.getAppName());
         Assertions.assertEquals("2020-10-01T11:59:26.256Z", syslogMessage.getTimestamp());
 
@@ -329,7 +329,7 @@ final class NLFPluginStorageTypesTest {
                                 + "}",
                         syslogMessage.getMsg()
                 );
-        Assertions.assertEquals("storageaccount4", syslogMessage.getHostname());
+        Assertions.assertEquals("md5-2ade7a9fed058ac57daf7dd857d1c05e-storageaccount4", syslogMessage.getHostname());
         Assertions.assertEquals("StorageTableLogs", syslogMessage.getAppName());
         Assertions.assertEquals("2020-10-01T11:59:26.256Z", syslogMessage.getTimestamp());
 

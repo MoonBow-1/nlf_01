@@ -89,7 +89,9 @@ public final class StorageType implements EventType {
         final ValidKey<String> validKey = new ValidStringKey(record, "AccountName");
         final String accountNameValue = validKey.value();
 
-        return new ValidRFC5424Hostname(accountNameValue).hostnameWithInvalidCharsRemoved();
+        return new ValidRFC5424Hostname(
+                "md5-".concat(new MD5Hash(accountNameValue).md5()).concat("-").concat(accountNameValue)
+        ).hostnameWithInvalidCharsRemoved();
     }
 
     @Override
