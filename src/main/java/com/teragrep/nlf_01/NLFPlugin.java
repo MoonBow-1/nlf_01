@@ -109,7 +109,7 @@ public final class NLFPlugin implements Plugin {
             else if ("AppEvents".equals(type)) {
                 eventTypes.add(new AppEventsType(parsedEvent, realHostname, componentNameForPartitions));
             }
-            else if (Set.of("AppServiceConsoleLogs", "LAQueryLogs").contains(type)) {
+            else if (Set.of("AppServiceConsoleLogs", "AZKVAuditLogs", "LAQueryLogs").contains(type)) {
                 eventTypes.add(new DefaultEventType(parsedEvent, realHostname, componentNameForPartitions));
             }
             else if (Set.of("AppTraces", "AppDependencies", "AppExceptions", "AppRequests").contains(type)) {
