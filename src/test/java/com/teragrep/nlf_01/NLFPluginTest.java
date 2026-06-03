@@ -307,7 +307,7 @@ public class NLFPluginTest {
     }
 
     @Test
-    void azkvAuditLogsTypeTest() {
+    void azkvAuditLogsTest() {
         final String json = Assertions
                 .assertDoesNotThrow(() -> Files.readString(Paths.get("src/test/resources/azkvauditlogs.json")));
         final ParsedEvent parsedEvent = new ParsedEventFactory(
