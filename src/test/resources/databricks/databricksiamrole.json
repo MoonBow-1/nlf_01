@@ -14,7 +14,7 @@
   "SourceSystem": "Azure",
   "TenantId": "12345678-1234-1234-abcd-1234567890ef",
   "TimeGenerated": "2025-10-06T00:00:00.0000000Z",
-  "Type": "databricksaccounts.json",
+  "Type": "DatabricksIAMRole",
   "UserAgent": "User-Agent: Mozilla/5.0 (<system-information>) <platform> (<platform-details>) <extensions>",
   "_ResourceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}",
   "_SubscriptionId": "12345678-1234-1234-abcd-1234567890fg"
